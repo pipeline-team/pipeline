@@ -1,0 +1,24 @@
+pipeline{
+    agent any
+    stages{
+        stage('version-control'){
+            steps{
+                git checkout
+            }
+        }
+        stage('2-parallel-job'){
+            parallel{
+                stage('sub-job-1'){
+                    steps{
+                        echo 'mkdir team3'
+                    }
+                }
+                stage('sub-job-2'){
+                    steps{
+                        echo 'nslookup'
+                    }
+                }
+            }
+        }
+    }
+}
